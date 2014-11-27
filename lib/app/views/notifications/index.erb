@@ -61,10 +61,13 @@
               <br>
 
               <p style="padding-left: 24px;">
-              <% if notification.regarding == 'code' %>
+              <% case notification.regarding %>
+              <% when 'code' %>
                 New iteration
+              <% when 'like' %>
+                <b><%= notification.creator.username %></b> thinks this looks good!
               <% else %>
-                <b><%= notification.creator.username %></b> commented
+                <b><%= notification.creator.username %></b> is nitpicking
               <% end %>
               <%= ago(notification.created_at) %>
               </p>
